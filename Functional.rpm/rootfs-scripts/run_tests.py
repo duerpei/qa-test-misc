@@ -4,25 +4,25 @@ import sys
 import json
 
 sys.path.append("/usr/AGL/agl-test/plugins")
-import agl_test_dir_conf
+import agl_test_conf
 import agl_test_log
 import agl_test_utils
 
-import rpm_parser
-import rpm_report
+import rpm.parser as parser
+import rpm.report as report
 
-WORK_DIR = agl_test_dir_conf.WORK_DIR
-TMP_LOGS_DIR = agl_test_dir_conf.TMP_LOGS_DIR
+WORK_DIR = agl_test_conf.WORK_DIR
+TMP_LOGS_DIR = agl_test_conf.TMP_LOGS_DIR
 
-THIS_TEST = "Functional.rpm"
+THIS_TEST = "rpm"
 test_cases_values_and_status = []
 
 def setup_module():
     agl_test_utils.find_cmd("rpm")
-    agl_test_utils.clean_env(THIS_TEST)
+    agl_test_utils.create_dir(THIS_TEST)
     run_test_fun()
     global test_cases_values_and_status
-    test_cases_values_and_status = rpm_parser.log_process(TMP_LOGS_DIR,THIS_TEST)
+    test_cases_values_and_status = parser.log_process(TMP_LOGS_DIR,THIS_TEST)
 
 #Run test, and redirect the log into the file of THIS_TEST.log  under TMP_LOGS_DIR/THIS_TEST/
 def run_test_fun():
@@ -48,8 +48,8 @@ def test_rpm03():
 
 #Pack the log file and count the test results
 def teardown_module():
-    rpm_report.log_report(test_cases_values_and_status,THIS_TEST)
+    report.log_report(test_cases_values_and_status,THIS_TEST)
 
 
 if __name__ == '__main__':
-    pytest.main("-s test_rpm.py")
+    pytest.main("-s run_tests")
