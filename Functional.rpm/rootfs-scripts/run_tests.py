@@ -3,11 +3,10 @@ import os
 import sys
 import json
 
-sys.path.append("/usr/AGL/agl-test/plugins")
-import agl_test_conf
-import agl_test_log
-import agl_test_utils
+import plugins.agl_test_log as agl_test_log
+import plugins.agl_test_utils as agl_test_utils
 
+import plugins.agl_test_conf as agl_test_conf
 import rpm.parser as parser
 import rpm.report as report
 
