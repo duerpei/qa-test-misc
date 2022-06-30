@@ -5,8 +5,8 @@ import json
 
 import plugins.agl_test_log as agl_test_log
 import plugins.agl_test_utils as agl_test_utils
-
 import plugins.agl_test_conf as agl_test_conf
+
 import rpm.parser as parser
 import rpm.report as report
 
@@ -30,16 +30,19 @@ def run_test_fun():
     assert str(type(output)) == "<class 'os._wrap_close'>"
     output.close()
 
+@pytest.mark.default
 def test_rpm01():
     global test_cases_values_and_status
     assert test_cases_values_and_status[1][1] == "TEST-PASS"
     test_cases_values_and_status[1][2] = "passed"
 
+@pytest.mark.default
 def test_rpm02():
     global test_cases_values_and_status
     assert test_cases_values_and_status[2][1] == "TEST-PASS"
     test_cases_values_and_status[2][2] = "passed"
 
+@pytest.mark.default
 def test_rpm03():
     global test_cases_values_and_status
     assert test_cases_values_and_status[3][1] == "TEST-PASS"

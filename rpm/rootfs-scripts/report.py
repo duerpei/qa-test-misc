@@ -5,9 +5,7 @@ from plugins.agl_test_report import get_summary
 from plugins.agl_test_report import write_date_to_json
 
 def log_report(test_cases_values_and_status,THIS_TEST):
-    #Compress the tmp log to .zip, and store the zip file under REPORT_LOGS_DIR/THIS_TEST/
-    #agl_test_report.log_compress(THIS_TEST)
-
+    #Get case_status, it's looks like : {'test_id': 'status',...}
     case_status = {}
     case_status = get_case_status(test_cases_values_and_status)
 
@@ -18,7 +16,7 @@ def log_report(test_cases_values_and_status,THIS_TEST):
 
     #Judge whether the test set passes
     test_set_status = "null"
-    if (summary[1][1] == 3):
+    if (summary[1][1] == summary[0][1]):
         test_set_status = "passed"
     else:
         test_set_status = "failed"

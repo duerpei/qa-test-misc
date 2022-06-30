@@ -24,14 +24,33 @@ def setup_module():
 
 #Run test, and redirect the log into the file of THIS_TEST.log  under TMP_LOGS_DIR/THIS_TEST/
 def run_test_fun():
-    #
-    #   to do:
-    #        run the test by gnome
-    #
-    cmdline = "cd " + WORK_DIR + THIS_TEST + "/resource/glib2-test/glib-2.46.2/bin_porter/tests" + ";" + "sh glib2_test.sh > " + TMP_LOGS_DIR + THIS_TEST + "/log/" + THIS_TEST + ".log" + " 2>&1 "
+    cmdline = "ptest-runner glib-2.0 > " + TMP_LOGS_DIR + THIS_TEST + "/log/" + THIS_TEST + ".log" + " 2>&1 "
     output = os.popen(cmdline)
     assert str(type(output)) == "<class 'os._wrap_close'>"
     output.close()
+
+def check_status(test_name):
+    global test_cases_values_and_status
+    for item in test_cases_values_and_status:
+        if(item[0]==test_name):
+            if(item[1] == "PASS"):
+                item[2] = "passed"
+                return 1
+            if(item[1] == "FAIL"):
+                item[2] = "failed"
+                return 0 
+
+def test_glib2_gdbus_names():
+    assert check_status("gdbus-names.test")
+
+def test_glib2_rand():
+    assert check_status("rand.test")
+
+def test_glib2_base64():
+    assert check_status("base64.test")
+
+#TODO 
+#Complete all test cases and delete -> def test_glib2():
 
 def test_glib2():
     global test_cases_values_and_status
