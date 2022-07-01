@@ -30,19 +30,19 @@ def run_test_fun():
     assert str(type(output)) == "<class 'os._wrap_close'>"
     output.close()
 
-@pytest.mark.default
+@pytest.mark.oss_default
 def test_rpm01():
     global test_cases_values_and_status
     assert test_cases_values_and_status[1][1] == "TEST-PASS"
     test_cases_values_and_status[1][2] = "passed"
 
-@pytest.mark.default
+@pytest.mark.oss_default
 def test_rpm02():
     global test_cases_values_and_status
     assert test_cases_values_and_status[2][1] == "TEST-PASS"
     test_cases_values_and_status[2][2] = "passed"
 
-@pytest.mark.default
+@pytest.mark.oss_default
 def test_rpm03():
     global test_cases_values_and_status
     assert test_cases_values_and_status[3][1] == "TEST-PASS"

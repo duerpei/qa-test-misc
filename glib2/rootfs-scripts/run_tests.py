@@ -41,24 +41,16 @@ def check_status(test_name):
                 return 0 
 
 def test_glib2_gdbus_names():
-    assert check_status("gdbus-names.test")
+    assert check_status("glib/gdbus-names.test")
 
 def test_glib2_rand():
-    assert check_status("rand.test")
+    assert check_status("glib/rand.test")
 
 def test_glib2_base64():
-    assert check_status("base64.test")
+    assert check_status("glib/base64.test")
 
 #TODO 
-#Complete all test cases and delete -> def test_glib2():
-
-def test_glib2():
-    global test_cases_values_and_status
-    for l in test_cases_values_and_status:
-        if(l[1] == "PASS"):
-            l[2] = "passed"
-        if(l[1] == "FAIL"):
-            l[2] = "failed"
+#Complete all test cases
 
 #Pack the log file and count the test results
 def teardown_module():
