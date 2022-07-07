@@ -38,7 +38,7 @@ def check_status(test_name):
                 return 1
             if(item[1] == "FAIL"):
                 item[2] = "failed"
-                return 0 
+                return 0
 
 def test_glib2_gdbus_names():
     assert check_status("glib/gdbus-names.test")
@@ -49,7 +49,7 @@ def test_glib2_rand():
 def test_glib2_base64():
     assert check_status("glib/base64.test")
 
-#TODO 
+#TODO
 #Complete all test cases
 
 #Pack the log file and count the test results
