@@ -1,9 +1,6 @@
 import pytest
-import os
-import sys
-import json
+import subprocess
 
-import plugins.agl_test_log as agl_test_log
 import plugins.agl_test_utils as agl_test_utils
 import plugins.agl_test_conf as agl_test_conf
 
@@ -25,10 +22,9 @@ def setup_module():
 
 #Run test, and redirect the log into the file of THIS_TEST.log  under TMP_LOGS_DIR/THIS_TEST/
 def run_test_fun():
-    cmdline = "cd " + WORK_DIR + THIS_TEST + "/resource/" + ";" + "sh rpm_test.sh > " + TMP_LOGS_DIR + THIS_TEST + "/log/" + THIS_TEST + ".log" + " 2>&1 "
-    output = os.popen(cmdline)
-    assert str(type(output)) == "<class 'os._wrap_close'>"
-    output.close()
+    args = "sh rpm_test.sh > " + TMP_LOGS_DIR + THIS_TEST + "/log/" + THIS_TEST + ".log" + " 2>&1 "
+    cwd = WORK_DIR + THIS_TEST + "/resource/"
+    subprocess.run(args,cwd=cwd,shell=True)
 
 @pytest.mark.oss_default
 def test_rpm01():
@@ -51,7 +47,6 @@ def test_rpm03():
 #Pack the log file and count the test results
 def teardown_module():
     report.log_report(test_cases_values_and_status,THIS_TEST)
-
 
 if __name__ == '__main__':
     pytest.main("-s run_tests")

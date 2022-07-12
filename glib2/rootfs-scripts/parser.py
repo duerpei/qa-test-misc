@@ -1,5 +1,3 @@
-import sys
-
 from plugins.agl_test_log import log_process_gnome_desktop_testing
 
 def log_process(TMP_LOGS_DIR,THIS_TEST):

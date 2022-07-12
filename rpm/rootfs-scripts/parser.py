@@ -1,5 +1,3 @@
-import sys
-
 from plugins.agl_test_log import log_process_default
 
 

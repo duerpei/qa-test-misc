@@ -1,16 +1,12 @@
 import pytest
-import os
-import sys
-import json
+import subprocess
 
 import plugins.agl_test_conf as agl_test_conf
-import plugins.agl_test_log as agl_test_log
 import plugins.agl_test_utils as agl_test_utils
 
 import glib2.parser as parser
 import glib2.report as report
 
-WORK_DIR = agl_test_conf.WORK_DIR
 TMP_LOGS_DIR = agl_test_conf.TMP_LOGS_DIR
 
 THIS_TEST = "glib2"
@@ -24,10 +20,8 @@ def setup_module():
 
 #Run test, and redirect the log into the file of THIS_TEST.log  under TMP_LOGS_DIR/THIS_TEST/
 def run_test_fun():
-    cmdline = "ptest-runner glib-2.0 > " + TMP_LOGS_DIR + THIS_TEST + "/log/" + THIS_TEST + ".log" + " 2>&1 "
-    output = os.popen(cmdline)
-    assert str(type(output)) == "<class 'os._wrap_close'>"
-    output.close()
+    args = "ptest-runner glib-2.0 > " + TMP_LOGS_DIR + THIS_TEST + "/log/" + THIS_TEST + ".log" + " 2>&1 "
+    subprocess.run(args,shell=True)
 
 def check_status(test_name):
     global test_cases_values_and_status
