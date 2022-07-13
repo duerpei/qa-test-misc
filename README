@@ -1,60 +1,56 @@
 #Agl Test Suites
 
-The repository is used to store test scripts,
-and the source code of test sets that are not maintained upstream.
+The repository is used to store test scripts
+and the source code of test sets that are not maintained upstream
 
-##Building
-
-Before compiling image, add "agl-test" to the source option to
-compile the agl-test into the image.
-After that, load the compiled image onto the board.
-
-##Running
-
-Run the following command to execute all the test set:
-agl-test
+The code in the repository could not be executed alone
+it will be called by the agl-test framework
 
 ##Directory Structure
 
-Take "rpm" as an example to illustrate the file contents
-contained in each OSS directory:
-
-rpm
+test_name
 ├── rootfs-scripts
 │   ├── __init__.py
 │   ├── parser.py
 │   ├── report.py
 │   ├── run_tests.py
+│   ├── criteria.json
 │   └── resource
-│       ├── rpm_test.sh
-│       ├── test-manual-1.2.3.noarch.rpm
-│       └── tests
-│           ├── rpm_01.sh
-│           ├── rpm_02.sh
-│           └── rpm_03.sh
-│
 └── yocto-scripts
+    └── complie.py
 
 ###rootfs-scripts:
 
-####__init__.py, parser.py, report.py and run_tests.py:
+####__init__.py:
 
-The files of __init__.py, parser.py, report.py and run_tests.py,
-these are the scripts required by the testing framework
+Empty file, but it is a necessary file required by the framework
+
+####parser.py:
+
+Script for parsing log
+
+####report.py:
+
+Script for generating test reports
+
+####run_tests.py:
+
+Script used to run the test set
 
 ####criteria.json:
 
-criteria.json is a threshold file reserved for benchmark testing,
+criteria.json is a threshold file reserved for benchmark testing
 which can be omitted in functional testing
 
 ####resource:
 
 The resource directory stores the source code of the test set
-without upstream maintenance.
-The actual execution is performed by run_tests.py
-calls the script under resource
+without upstream maintenance. The actual execution is performed by
+run_tests.py calls the script under resource
 
 ###yocto-scripts:
-Under "yocto-scripts" is the script for compiling the test set. If the
-test set does not need to be compiled, this script can be omitted.
-Since rpm does not need to be compiled, this directory is omitted
+
+####complie.py:
+
+"complie.py" is the script for compiling the test set which required by yocto
+If the test set does not need to be compiled, this script can be omitted
